@@ -25,12 +25,9 @@ import coil.load
 import com.sachin.app.currencyconverter.databinding.FragmentMainBinding
 import com.sachin.app.currencyconverter.network.Rate
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 import kotlin.math.hypot
 
@@ -42,22 +39,60 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels()
     private var chooseId = 0
 
-    private val listener1 by lazy {
-        AmountChangerListener(
-            binding.editTextTo,
-            binding.editTextFrom,
-            viewModel.rate1,
-            viewModel.rate2
-        )
+    private val listener1 = object : TextWatcher {
+        override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+            if (binding.editTextTo.hasFocus()) {
+                if (text.isNullOrBlank() || text.startsWith('.')) {
+                    binding.editTextFrom.setText("")
+                } else {
+                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                        val from = viewModel.rate2.first()?.value ?: 1.0
+                        val to = viewModel.rate1.first()?.value ?: 1.0
+                        withContext(Dispatchers.Main) {
+                            binding.editTextFrom.setText(
+                                convert(
+                                    text.trim().toString().toDouble(),
+                                    from,
+                                    to
+                                )
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun afterTextChanged(s: Editable?) {}
     }
 
-    private val listener2 by lazy {
-        AmountChangerListener(
-            binding.editTextFrom,
-            binding.editTextTo,
-            viewModel.rate2,
-            viewModel.rate1
-        )
+    private val listener2 = object : TextWatcher {
+        override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+            if (binding.editTextFrom.hasFocus()) {
+                if (text.isNullOrBlank() || text.startsWith('.')) {
+                    binding.editTextTo.setText("")
+                } else {
+                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                        val from = viewModel.rate1.first()?.value ?: 1.0
+                        val to = viewModel.rate2.first()?.value ?: 1.0
+                        withContext(Dispatchers.Main) {
+                            binding.editTextTo.setText(
+                                convert(
+                                    text.trim().toString().toDouble(),
+                                    from,
+                                    to
+                                )
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun afterTextChanged(s: Editable?) {}
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -116,7 +151,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
 
             editTextTo.addTextChangedListener(listener1)
-
             editTextFrom.addTextChangedListener(listener2)
 
             editTextTo.requestFocus()
@@ -218,9 +252,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun swap() {
-        val temp = viewModel.id1.value
-        requireContext().saveCountry1(viewModel.id2.value)
-        requireContext().saveCountry2(temp)
+        CoroutineScope(Dispatchers.IO).launch{
+            val temp = viewModel.id1.first()
+            requireContext().saveCountry1(viewModel.id2.first())
+            requireContext().saveCountry2(temp)
+        }
         viewModel.swapFlag.value = !viewModel.swapFlag.value
     }
 
@@ -249,7 +285,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         return String.format("%.2f", amount.times(to.div(from)))
     }
 
-    inner class AmountChangerListener(
+   /* inner class AmountChangerListener(
         private val editTextTo: EditText,
         private val editTextFrom: EditText,
         private val rateTo: Flow<Rate?>,
@@ -257,29 +293,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     ) : TextWatcher {
 
         override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-            if (editTextTo.hasFocus()) {
-                if (text.isNullOrBlank() || text.startsWith('.')) {
-                    editTextFrom.setText("")
-                } else {
-                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                        val from = rateFrom.first()?.value ?: 1.0
-                        val to = rateTo.first()?.value ?: 1.0
-                        withContext(Dispatchers.Main) {
-                            editTextFrom.setText(
-                                convert(
-                                    text.trim().toString().toDouble(),
-                                    from,
-                                    to
-                                )
-                            )
-                        }
-                    }
-                }
-            }
+
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun afterTextChanged(s: Editable?) {}
-    }
+    }*/
 }
