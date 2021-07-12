@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.CurrencyConverter" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_theme_1</item>
+        <item name="colorSecondary">@color/color_theme_2</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>
