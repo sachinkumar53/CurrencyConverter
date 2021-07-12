@@ -1,2 +1,2 @@
-# CurrencyConverter
-Simple currency converter app using API
+# Currency converter
+A simple currency converter android app using API.
