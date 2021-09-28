@@ -8,7 +8,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:fitsSystemWindows="true"
-    tools:context=".CountriesFragment">
+    tools:context=".ui.countries.CountriesFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"

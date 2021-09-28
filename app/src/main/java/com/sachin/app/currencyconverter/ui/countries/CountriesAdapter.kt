@@ -1,4 +1,4 @@
-package com.sachin.app.currencyconverter
+package com.sachin.app.currencyconverter.ui.countries
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

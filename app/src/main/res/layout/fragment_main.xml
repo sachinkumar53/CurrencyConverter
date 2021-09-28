@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainFragment">
+    tools:context=".ui.main.MainFragment">
 
     <View
         android:id="@+id/dummy_view"
@@ -195,7 +195,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.sachin.app.currencyconverter.Keyboard
+    <com.sachin.app.currencyconverter.ui.view.Keyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

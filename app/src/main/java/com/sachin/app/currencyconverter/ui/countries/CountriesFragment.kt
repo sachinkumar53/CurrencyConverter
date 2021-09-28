@@ -1,4 +1,4 @@
-package com.sachin.app.currencyconverter
+package com.sachin.app.currencyconverter.ui.countries
 
 import android.os.Bundle
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.sachin.app.currencyconverter.R
 import com.sachin.app.currencyconverter.databinding.FragmentCountriesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.sachin.app.currencyconverter.MainFragment"
+        android:name="com.sachin.app.currencyconverter.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/countriesFragment"
-        android:name="com.sachin.app.currencyconverter.CountriesFragment"
+        android:name="com.sachin.app.currencyconverter.ui.countries.CountriesFragment"
         android:label="country_list_item"
         tools:layout="@layout/fragment_countries" >
         <action

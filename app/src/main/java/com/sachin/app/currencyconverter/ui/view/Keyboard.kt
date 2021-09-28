@@ -1,4 +1,4 @@
-package com.sachin.app.currencyconverter
+package com.sachin.app.currencyconverter.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,6 +8,7 @@ import android.view.inputmethod.ExtractedTextRequest
 import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.FrameLayout
+import com.sachin.app.currencyconverter.R
 import com.sachin.app.currencyconverter.databinding.KeyboardBinding
 
 

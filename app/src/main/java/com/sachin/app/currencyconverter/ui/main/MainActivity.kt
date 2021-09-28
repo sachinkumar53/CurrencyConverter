@@ -1,4 +1,4 @@
-package com.sachin.app.currencyconverter
+package com.sachin.app.currencyconverter.ui.main
 
 import android.content.Context
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
+import com.sachin.app.currencyconverter.R
 import com.sachin.app.currencyconverter.database.AppDatabase
 import com.sachin.app.currencyconverter.network.ExchangeApiClient
 import com.sachin.app.currencyconverter.network.Rate

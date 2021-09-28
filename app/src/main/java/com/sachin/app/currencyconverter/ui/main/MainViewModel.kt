@@ -1,4 +1,4 @@
-package com.sachin.app.currencyconverter
+package com.sachin.app.currencyconverter.ui.main
 
 import androidx.lifecycle.ViewModel
 import com.sachin.app.currencyconverter.database.AppDatabase

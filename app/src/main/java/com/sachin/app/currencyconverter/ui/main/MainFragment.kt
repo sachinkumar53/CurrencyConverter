@@ -1,4 +1,4 @@
-package com.sachin.app.currencyconverter
+package com.sachin.app.currencyconverter.ui.main
 
 import android.content.res.ColorStateList
 import android.graphics.drawable.ColorDrawable
@@ -11,7 +11,6 @@ import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import androidx.core.animation.doOnEnd
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.clearFragmentResultListener
@@ -22,11 +21,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
+import com.sachin.app.currencyconverter.R
 import com.sachin.app.currencyconverter.databinding.FragmentMainBinding
-import com.sachin.app.currencyconverter.network.Rate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import java.util.*
 import kotlin.math.hypot
@@ -284,20 +282,4 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun convert(amount: Double, from: Double, to: Double): String {
         return String.format("%.2f", amount.times(to.div(from)))
     }
-
-   /* inner class AmountChangerListener(
-        private val editTextTo: EditText,
-        private val editTextFrom: EditText,
-        private val rateTo: Flow<Rate?>,
-        private val rateFrom: Flow<Rate?>
-    ) : TextWatcher {
-
-        override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-        override fun afterTextChanged(s: Editable?) {}
-    }*/
 }
