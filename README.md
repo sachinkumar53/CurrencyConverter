@@ -32,6 +32,6 @@ To use CurrencyConverter app, simply download the APK file from our GitHub repos
 If you find a bug or have a feature request, please create a new issue on our GitHub repository. We welcome contributions from the community, so feel free to fork the repository and submit a pull request with your changes.
 
 ## License
+This project is licensed under the terms of the [MIT](LICENSE) license.
 
-[MIT](https://github.com/sachinkumar53/CurrencyConverter/blob/master/LICENSE)
 
