@@ -3,9 +3,6 @@
 
 CurrencyConverter is a simple Android app that allows you to convert values to different currencies with live exchange rates fetched from [Exchange rates API](https://exchangeratesapi.io). The app is written in Kotlin and follows MVVM pattern.
 
-
-
-
 ## Features
 
 - Convert values to different currencies
@@ -33,4 +30,8 @@ To use CurrencyConverter app, simply download the APK file from our GitHub repos
 ## Contributing
 
 If you find a bug or have a feature request, please create a new issue on our GitHub repository. We welcome contributions from the community, so feel free to fork the repository and submit a pull request with your changes.
+
+## License
+
+[MIT](https://github.com/sachinkumar53/CurrencyConverter/blob/master/LICENSE)
 
