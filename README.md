@@ -34,9 +34,7 @@ If you find a bug or have a feature request, please create a new issue on our Gi
 ## License
 This project is licensed under the terms of the [MIT](LICENSE) license.
 ```
-MIT License
-
-Copyright (c) 2023 Sachin Kumar
+Copyright (c) 2021 Sachin Kumar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
