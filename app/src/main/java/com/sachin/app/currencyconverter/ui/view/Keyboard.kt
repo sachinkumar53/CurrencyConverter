@@ -42,8 +42,8 @@ class Keyboard @JvmOverloads constructor(
                     val beforeCursorText = it.getTextBeforeCursor(currentText.length, 0)
                     val afterCursorText = it.getTextAfterCursor(currentText.length, 0)
                     it.deleteSurroundingText(
-                        beforeCursorText.length,
-                        afterCursorText.length
+                        beforeCursorText?.length ?: 0,
+                        afterCursorText?.length ?: 0
                     )
                 }
                 true

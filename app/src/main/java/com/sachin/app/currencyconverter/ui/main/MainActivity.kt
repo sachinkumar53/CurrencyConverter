@@ -16,6 +16,8 @@ import com.sachin.app.currencyconverter.database.AppDatabase
 import com.sachin.app.currencyconverter.network.ExchangeApiClient
 import com.sachin.app.currencyconverter.network.Rate
 import dagger.hilt.android.AndroidEntryPoint
+import io.ktor.client.statement.bodyAsText
+import io.ktor.util.InternalAPI
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -30,13 +32,14 @@ import java.io.IOException
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
+    @OptIn(InternalAPI::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch(Dispatchers.IO) {
             if ((System.currentTimeMillis() - lastUpdateTime.first()) > 60 * 60 * 1000L) {
                 runCatching {
-                    ExchangeApiClient.getRates()
+                    ExchangeApiClient.getRates().bodyAsText()
                 }.onSuccess {
                     val response = JSONObject(it)
                     val rates = response.getJSONObject("rates")
@@ -69,7 +72,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 val Context.country1Id: Flow<Int>
     get() = dataStore.data.catch {
         if (it is IOException) {
-        } else throw  it
+        } else throw it
     }.map {
         it[country1Key] ?: 1
     }
@@ -77,7 +80,7 @@ val Context.country1Id: Flow<Int>
 val Context.country2Id: Flow<Int>
     get() = dataStore.data.catch {
         if (it is IOException) {
-        } else throw  it
+        } else throw it
     }.map {
         it[country2Key] ?: 2
     }
@@ -97,7 +100,7 @@ fun Context.saveCountry2(id: Int) = CoroutineScope(Dispatchers.IO).launch {
 val Context.lastUpdateTime: Flow<Long>
     get() = dataStore.data.catch {
         if (it is IOException) {
-        } else throw  it
+        } else throw it
     }.map {
         it[lastUpdateTimeKey] ?: 0L
     }

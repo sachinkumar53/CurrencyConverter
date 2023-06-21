@@ -1,10 +1,11 @@
 package com.sachin.app.currencyconverter.network
 
 import android.util.Log
-import io.ktor.client.*
-import io.ktor.client.engine.android.*
-import io.ktor.client.features.observer.*
-import io.ktor.client.request.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.observer.ResponseObserver
+import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
 
 object ExchangeApiClient {
 
@@ -30,38 +31,7 @@ object ExchangeApiClient {
         }
     }
 
-    suspend fun getRates(): String = client.get(URL)
-
-    /*suspend fun getWeather(
-        latitude: Double,
-        longitude: Double,
-        unit: String,
-        lang: String
-    ): WeatherResponse {
-        return client.get {
-            url(BASE_URL + "weather")
-            parameter("lat", latitude)
-            parameter("lon", longitude)
-            parameter("units", unit)
-            parameter("lang", lang)
-
-        }
-
-    }*/
-/*suspend fun getWeather(
-        latitude: Double,
-        longitude: Double,
-        unit: String,
-        lang: String
-    ): WeatherResponse {
-        return client.get {
-            url(BASE_URL + "weather")
-            parameter("lat", latitude)
-            parameter("lon", longitude)
-            parameter("units", unit)
-            parameter("lang", lang)
-
-        }
-
-    }*/
+    suspend fun getRates(): HttpResponse {
+        return client.get(urlString = URL)
+    }
 }
